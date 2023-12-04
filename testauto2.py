@@ -6,116 +6,90 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 import time
 
-chrome_driver_path = r"D:\Driver\chromedriver.exe"  # ecole
-log_file = "log.txt"  #ecole
+chrome_driver_path = r"D:\Driver\chromedriver.exe"
+log_file = "log.txt"
 url = "http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html"
 isDriver = False
 
-if isDriver :
+if isDriver:
     service = Service(executable_path=chrome_driver_path)
     driver = webdriver.Chrome(service=service)
-else :
+else:
     driver = webdriver.Chrome()
+
 driver.get(url)
 
 testTableau = [
     ["admin", "123456"],
     ["admin", "987654"],
-    ["",""],
-
-    ]
-
-#try:
+    ["", ""],
+]
 
 for i in testTableau:
-    #tc01/02/03/05
+    # tc01/02/03/05
     driver.find_element(By.ID, "username").send_keys(i[0])
     driver.find_element(By.ID, "password").send_keys(i[1])
     driver.find_element(By.ID, "login-form").click()
-    time.sleep(2)
+    
+    WebDriverWait(driver, 10).until(EC.staleness_of(driver.find_element(By.ID, "login-form")))
+    
+    # tc04/06
     driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
-    time.sleep(1)
-    #tc04/06
-    driver.find_element(By.ID, "username").send_keys(i[0])   
+    
+    # tc07
+    driver.find_element(By.ID, "username").send_keys(i[0])
     driver.find_element(By.ID, "password").send_keys(i[1])
     driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
-    time.sleep(1)
-    driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
-    time.sleep(2)
-
-    #tc07
-    driver.find_element(By.ID, "username").send_keys(i[0])   
-    driver.find_element(By.ID, "password").send_keys(i[1])
-    driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
-    time.sleep(1)
-    driver.find_element(By.ID, "link-users").click()
-    driver.find_element(By.CSS_SELECTOR, ".btn-success").click()
-    time.sleep(1)
+    
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "link-users"))).click()
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".btn-success"))).click()
+    
     driver.find_element(By.ID, "username").send_keys("test user")
     driver.find_element(By.ID, "email").send_keys("test@example.com")
     driver.find_element(By.ID, "password").send_keys("test123")
     driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
-    time.sleep(1)
-    driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
-    time.sleep(1)
     
-    #tc08  
-    driver.find_element(By.ID, "username").send_keys(i[0])   
-    driver.find_element(By.ID, "password").send_keys(i[1])
-    driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
-    driver.find_element(By.ID, "link-settings").click()
+    # tc08
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "link-settings"))).click()
+    
     couleur = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "theme-selector")))
     select = Select(couleur)
     select.select_by_visible_text("Sombre")
+    
     police = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "font-size-selector")))
     select = Select(police)
     select.select_by_visible_text("Grande")
+    
     couleur = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "border-style-selector")))
     select = Select(couleur)
     select.select_by_visible_text("Arrondi")
+    
     driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
-    time.sleep(1)
-
-    #tc09
-    driver.find_element(By.ID, "username").send_keys(i[0])   
+    
+    # tc09
+    driver.find_element(By.ID, "username").send_keys(i[0])
     driver.find_element(By.ID, "password").send_keys(i[1])
     driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
-    time.sleep(1)
-    driver.find_element(By.ID, "link-analytics").click()
-    time.sleep(1)
+    
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "link-analytics"))).click()
+    
     driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
-    time.sleep(1)
-
-    #tc10
-    driver.find_element(By.ID, "username").send_keys(i[0])   
+    
+    # tc10
+    driver.find_element(By.ID, "username").send_keys(i[0])
     driver.find_element(By.ID, "password").send_keys(i[1])
     driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
-    time.sleep(1)   
-    driver.find_element(By.ID, "link-support").click()
-    driver.find_element(By.CSS_SELECTOR, ".btn-success").click()
+    
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "link-support"))).click()
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".btn-success"))).click()
+    
     driver.find_element(By.ID, "title").send_keys("Probleme de connexion")
     driver.find_element(By.ID, "username").send_keys("impossible de se connecter")
     driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
-    time.sleep(1)
-    driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
-    time.sleep(1)
-
-    #tc11
-    driver.find_element(By.ID, "username").send_keys(i[0])   
+    
+    # tc11
+    driver.find_element(By.ID, "username").send_keys(i[0])
     driver.find_element(By.ID, "password").send_keys(i[1])
     driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
-    time.sleep(1) 
-    driver.find_elemnt(By.LINK_TEXT,"Déconnexion").click()
-
-
-
-#     with open(log_file, 'a', encoding="UTF-8") as file:   #'w' pour effacre le dossier log
-#             file.write(f'reussite lors du test avec{i[0]} à {time.ctime()} - Succès :test validé \n ')
-# except Exception as e:
-#     with open(log_file, 'a') as file:
-#             file.write(f'erruer lors du test avec{i[0]} à {time.ctime()} : test erreur\n ')
-#             print("An exception occurred")
-
-
-
-input()
+    
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Déconnexion"))).click()
