@@ -5,6 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 import time
+from PIL import Image
+
 
 chrome_driver_path = r"D:\Driver\chromedriver.exe"  # ecole
 log_file = "log.txt"  #ecole
@@ -28,7 +30,7 @@ for i in testTableau:
 
         driver.find_element(By.ID, "username").send_keys(i[0])
         driver.find_element(By.ID, "password").send_keys(i[1])
-        driver.find_element(By.ID, "login-form").click()
+        driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
         time.sleep(2)
         driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
         time.sleep(1)
@@ -44,7 +46,7 @@ for i in testTableau:
 
         driver.find_element(By.ID, "username").send_keys(i[0])
         driver.find_element(By.ID, "password").send_keys(i[2])
-        driver.find_element(By.ID, "login-form").click()
+        driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
         time.sleep(2)
         driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
         time.sleep(1)
@@ -60,7 +62,7 @@ for i in testTableau:
 
         driver.find_element(By.ID, "username").send_keys(i[3])
         driver.find_element(By.ID, "password").send_keys(i[4])
-        driver.find_element(By.ID, "login-form").click()
+        driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
         time.sleep(2)
         driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
         time.sleep(1)
@@ -74,15 +76,52 @@ for i in testTableau:
                 #tc05
     
     try:
-
-        
-            id = driver.find_element(By.ID, "username").send_keys(i[0])
-            mdp = driver.find_element(By.ID, "password").send_keys(i[3])
-            driver.find_element(By.ID, "login-form").click()
-            time.sleep(2)
+            #test popup valide
+            driver.find_element(By.ID, "username").send_keys(i[0])
+            driver.find_element(By.ID, "password").send_keys(i[1])
+            driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
+            #time.sleep(2)
+            driver.find_element(By.ID, "success-popup")#.click()
+            driver.save_screenshot("screenshot.png")
+            driver.implicitly_wait(0.5)
+            screenshot = Image.open("screenshot.png")
+            screenshot.show()
             driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
             time.sleep(1)
-            
+            #test popup non valide
+            driver.find_element(By.ID, "username").send_keys(i[0])
+            driver.find_element(By.ID, "password").send_keys(i[2])
+            driver.implicitly_wait(0.5)
+            screenshot = Image.open("screenshot.png")
+            screenshot.show()
+            driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
+            #time.sleep(2)
+            driver.find_element(By.ID, "failure-popup")#.click()
+            driver.save_screenshot("screenshot.png")
+            driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
+            time.sleep(1)
+            driver.find_element(By.ID, "username").send_keys(i[1])
+            driver.find_element(By.ID, "password").send_keys(i[1])
+            driver.implicitly_wait(0.5)
+            screenshot = Image.open("screenshot.png")
+            screenshot.show()
+            driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
+            #time.sleep(2)
+            driver.find_element(By.ID, "failure-popup")#.click()
+            driver.save_screenshot("screenshot.png")
+            driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
+            time.sleep(1)
+            driver.find_element(By.ID, "username").send_keys(i[1])
+            driver.find_element(By.ID, "password").send_keys(i[0])
+            driver.implicitly_wait(0.5)
+            screenshot = Image.open("screenshot.png")
+            screenshot.show()
+            driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
+            #time.sleep(2)
+            driver.find_element(By.ID, "failure-popup")#.click()
+            driver.save_screenshot("screenshot.png")
+            driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
+            time.sleep(1)           
             with open(log_file, 'a', encoding="UTF-8") as file:   #'w' pour effacre le dossier log
                 file.write(f'reussite lors du test avec{i[3]} à {time.ctime()} - Succès :test validé \n ')
     except Exception as e:
@@ -183,3 +222,6 @@ for i in testTableau:
 
 
 input()
+
+screenshot = Image.open("screenshot.png")
+screenshot.show()
