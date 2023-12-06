@@ -9,7 +9,7 @@ import logging
 
 
 chrome_driver_path = r"D:\Driver\chromedriver.exe"  # ecole
-log_file = "log.txt"  #ecole
+logging = "log.txt"  #ecole
 url = "http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html"
 isDriver = False
 
@@ -49,7 +49,7 @@ for i in testTableau:
 
         #tc02
     try:
-
+        driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
         driver.find_element(By.ID, "username").send_keys(i[0])
         driver.find_element(By.ID, "password").send_keys(i[2])
         driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
@@ -68,7 +68,7 @@ for i in testTableau:
 
         #tc03
     try:
-
+        driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
         driver.find_element(By.ID, "username").send_keys(i[3])
         driver.find_element(By.ID, "password").send_keys(i[4])
         driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
@@ -87,7 +87,7 @@ for i in testTableau:
 
         #tc04        
     try:
-
+        driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
         driver.find_element(By.ID, "username").send_keys(i[0])
         driver.find_element(By.ID, "password").send_keys(i[1])
         driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
@@ -108,6 +108,7 @@ for i in testTableau:
     
     try:
             #test popup valide
+        driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
         driver.find_element(By.ID, "username").send_keys(i[0])
         driver.find_element(By.ID, "password").send_keys(i[1])
         driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
@@ -122,8 +123,9 @@ for i in testTableau:
             #time.sleep(1)  
             
             #test popup non valide
+
     try:  # test admin juste pasword faut
-            
+        driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")    
         driver.find_element(By.ID, "username").send_keys(i[0])
         driver.find_element(By.ID, "password").send_keys(i[2])
         driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
@@ -137,6 +139,7 @@ for i in testTableau:
             #time.sleep(1)
 
     try:    # test admin faut pasword faut
+        driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
         driver.find_element(By.ID, "username").send_keys(i[1])
         driver.find_element(By.ID, "password").send_keys(i[1])
         driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
@@ -150,6 +153,7 @@ for i in testTableau:
             #time.sleep(1)
 
     try:    # test amin faut pasword juste
+        driver.get("http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html")
         driver.find_element(By.ID, "username").send_keys(i[2])
         driver.find_element(By.ID, "password").send_keys(i[1])
         driver.find_element(By.ID, "login-form").find_element(By.CSS_SELECTOR, ".btn-login").click()
