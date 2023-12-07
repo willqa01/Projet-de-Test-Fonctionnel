@@ -9,7 +9,10 @@ import logging
 
 
 chrome_driver_path = r"D:\Driver\chromedriver.exe"  # ecole
-log_file = "log.txt"  #ecole
+logging.basicConfig(filename='selenium_logs.log', level=logging.INFO)  #ecole
+with open('selenium_logs.log', 'r') as file:
+    logs = file.read()
+    print(logs)
 url = "http://localhost/projet autonome/Projet-de-Test-Fonctionnel/admin.html"
 isDriver = False
 
@@ -30,12 +33,12 @@ for i in testTableau:
 
         driver.find_element(By.ID, "link-users").click()
         driver.find_element(By.CSS_SELECTOR, ".btn-success").click()
-        #time.sleep(1)
+        time.sleep(1)
         driver.find_element(By.ID, "username").send_keys(i[5])
         driver.find_element(By.ID, "email").send_keys(i[6])
         driver.find_element(By.ID, "password").send_keys(i[7])
         driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
-        #time.sleep(1)
+        time.sleep(1)
         if driver.find_element(By.CSS_SELECTOR, "div.admin-content td").is_displayed():
             logging.info("tc07 ok")
         else:

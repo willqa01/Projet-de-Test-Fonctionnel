@@ -9,7 +9,10 @@ import logging
 
 
 chrome_driver_path = r"D:\Driver\chromedriver.exe"  # ecole
-log_file = "log.txt"  #ecole
+logging.basicConfig(filename='selenium_logs.log', level=logging.INFO)  #ecole
+with open('selenium_logs.log', 'r') as file:
+    logs = file.read()
+    print(logs)
 url = "http://localhost/projet autonome/Projet-de-Test-Fonctionnel/admin.html"
 isDriver = False
 

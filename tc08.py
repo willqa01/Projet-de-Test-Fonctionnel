@@ -9,7 +9,10 @@ import logging
 
 
 chrome_driver_path = r"D:\Driver\chromedriver.exe"  # ecole
-log_file = "log.txt"  #ecole
+logging.basicConfig(filename='selenium_logs.log', level=logging.INFO)  #ecole
+with open('selenium_logs.log', 'r') as file:
+    logs = file.read()
+    print(logs)
 url = "http://localhost/projet autonome/Projet-de-Test-Fonctionnel/admin.html"
 isDriver = False
 
@@ -55,9 +58,9 @@ for i in testTableau:
         select = Select(bordure)
         select.select_by_visible_text(i[13])
         if driver.find_element(By.ID, "theme-selector").find_element(By.XPATH, '//option[.="Carré"]').is_displayed():
-            logging.info("tc08 police ok")
+            logging.info("tc08 bordure ok")
         else:
-            logging.info("tc08 police nul")
+            logging.info("tc08 bordure nul")
 
 
     finally:
