@@ -18,3 +18,9 @@ INFO:root:affichage  popup success ok
 INFO:root:tc10  admi ok pasword ok test ok
 INFO:root:tc10  admi ok pasword ok test ok
 INFO:root:tc10  admi ok pasword ok test nul
+INFO:root:tc10  admi ok pasword ok test ok
+INFO:root:tc10  admi ok pasword nul test nul
+INFO:root:tc10  admi ok pasword ok test ok
+INFO:root:tc10  admi ok pasword nul test nul
+INFO:root:tc10  admi ok pasword ok test ok
+INFO:root:tc10  admi ok pasword nul test ok

@@ -39,7 +39,7 @@ for i in testTableau:
         if WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "success-popup"))).is_displayed() :
             logging.info("tc10  admi ok pasword ok test ok")
         elif WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "failure-popup"))).is_displayed():
-            logging.info("tc10  admi ok pasword ok test nul")
+            logging.info("tc10  admi ok pasword nul test ok")
 
 
     finally:  
