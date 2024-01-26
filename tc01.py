@@ -13,7 +13,8 @@ logging.basicConfig(filename='selenium_logs.log', level=logging.INFO)  #ecole
 with open('selenium_logs.log', 'r') as file:
     logs = file.read()
     print(logs)
-url = "http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html"
+# url = "http://localhost/projet autonome/Projet-de-Test-Fonctionnel/index.html"
+url = "file:///D:/Projet-de-Test-Fonctionnel/index.html"
 isDriver = False
 
 if isDriver :
